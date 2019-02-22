@@ -1,0 +1,22 @@
+{
+  "name": "video-maker",
+  "version": "1.0.0",
+  "description": "Projeto open source para fazer vídeos automatizados",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/filipedeschamps/video-maker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/filipedeschamps/video-maker/issues"
+  },
+  "homepage": "https://github.com/filipedeschamps/video-maker#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.9"
+  }
+}
