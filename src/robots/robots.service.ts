@@ -4,6 +4,7 @@ import { ImageService } from './image/image.service';
 import { TextService } from './text/text.service';
 import { VideoService } from './video/video.service';
 import { YoutubeService } from './youtube/youtube.service';
+import { IOptions } from '../shared/options.interface';
 
 @Injectable()
 export class RobotsService implements IRobots {
@@ -14,11 +15,11 @@ export class RobotsService implements IRobots {
     private youtubeService: YoutubeService,
   ) { }
 
-  start() {
+  start(options: IOptions) {
     this.imageService.start();
     this.textService.start();
     this.videoService.start();
     this.youtubeService.start();
-    return { message: `I'm alive!` };
+    return { message: `I'm alive!`, options };
   }
 }

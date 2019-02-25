@@ -8,6 +8,6 @@ export class RobotsController {
 
   @Post('start')
   start(options: IOptions) {
-    return this.robotsService.start();
+    return this.robotsService.start(options);
   }
 }

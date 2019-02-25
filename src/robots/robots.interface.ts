@@ -1,3 +1,5 @@
+import { IOptions } from '../shared/options.interface';
+
 export interface IRobots {
-  start(): void;
+  start(options?: IOptions): void;
 }
