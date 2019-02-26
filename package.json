@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/filipedeschamps/video-maker#readme",
   "dependencies": {
+    "imdb-scrapper": "^2.2.0",
     "readline-sync": "^1.4.9"
   }
 }
