@@ -4,7 +4,7 @@
   "description": "Projeto open source para fazer vídeos automatizados",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,13 @@
   "homepage": "https://github.com/filipedeschamps/video-maker#readme",
   "dependencies": {
     "readline-sync": "^1.4.9"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.3.4",
+    "eslint": "^5.14.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.3.0",
+    "jest": "^24.1.0"
   }
 }

@@ -1,24 +1,12 @@
-const readline = require('readline-sync')
+import * as ask from './ask';
 
 function start() {
-  const content = {}
+  const content = {};
 
-  content.searchTerm = askAndReturnSearchTerm()
-  content.prefix = askAndReturnPrefix()
+  content.searchTerm = ask.askAndReturnSearchTerm();
+  content.prefix = ask.askAndReturnPrefix();
 
-  function askAndReturnSearchTerm() {
-    return readline.question('Type a Wikipedia search term: ')
-  }
-
-  function askAndReturnPrefix() {
-    const prefixes = ['Who is', 'What is', 'The history of']
-    const selectedPrefixIndex = readline.keyInSelect(prefixes, 'Choose one option: ')
-    const selectedPrefixText = prefixes[selectedPrefixIndex]
-
-    return selectedPrefixText
-  }
-
-  console.log(content)
+  console.log(content);
 }
 
-start()
+start();
