@@ -18,5 +18,8 @@
   "homepage": "https://github.com/filipedeschamps/video-maker#readme",
   "dependencies": {
     "readline-sync": "^1.4.9"
+  },
+  "devDependencies": {
+    "pkg": "^4.3.7"
   }
 }
