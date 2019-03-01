@@ -26,9 +26,9 @@ async function start () {
   }
 
   async function getGoogleTrends () {
-    const parser = new Parser();
-    const trends = await parser.parseURL(TREND_URL);
-    return trends.items.map(i => i.title)
+    const parser = new Parser()
+    const trends = await parser.parseURL(TREND_URL)
+    return trends.items.map(({title}) => title)
   }
 
   function askAndReturnPrefix () {
