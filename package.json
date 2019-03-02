@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-win": "npx pkg -t node8-win index.js"
+    "build-win": "npx pkg -t node8-win index.js",
+    "build-mac": "npx pkg -t node8-macos-x64 index.js"
   },
   "repository": {
     "type": "git",
