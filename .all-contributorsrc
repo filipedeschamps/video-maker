@@ -1,0 +1,33 @@
+{
+  "projectName": "video-maker",
+  "projectOwner": "filipedeschamps",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "filipedeschamps",
+      "name": "Filipe Deschamps",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/4248081?v=4",
+      "profile": "https://youtube.com/c/FilipeDeschamps",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "MatheusRV",
+      "name": "Matheus Rocha Vieira",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/23284276?v=4",
+      "profile": "http://matheu.srv.br",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
