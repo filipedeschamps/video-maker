@@ -4,6 +4,7 @@
   "description": "Projeto open source para fazer vídeos automatizados",
   "main": "index.js",
   "scripts": {
+    "start": "babel-node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +18,11 @@
   },
   "homepage": "https://github.com/filipedeschamps/video-maker#readme",
   "dependencies": {
+    "babel": "^6.23.0",
     "readline-sync": "^1.4.9"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
   }
 }
