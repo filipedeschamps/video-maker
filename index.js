@@ -1,4 +1,4 @@
-const readline = require('readline-sync')
+import readline from 'readline-sync'
 
 function start() {
   const content = {}
