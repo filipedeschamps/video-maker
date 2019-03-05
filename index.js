@@ -1,6 +1,8 @@
-const readline = require('readline-sync')
+import readline from 'readline-sync'
+import robotsText from './robots/text.js' 
+
 const robots = {
-  text: require('./robots/text.js')
+  text: robotsText
 }
 
 async function start() {
