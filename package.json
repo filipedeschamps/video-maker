@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/filipedeschamps/video-maker#readme",
   "dependencies": {
-    "readline-sync": "^1.4.9"
+    "algorithmia": "^0.3.10",
+    "readline-sync": "^1.4.9",
+    "sbd": "^1.0.14"
   }
 }
