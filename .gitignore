@@ -60,5 +60,5 @@ typings/
 # next.js build output
 .next
 
-# credentials
-credentials/*.json
+# webstorm ide files
+.idea

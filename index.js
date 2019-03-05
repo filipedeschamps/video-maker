@@ -1,29 +1,38 @@
-const readline = require('readline-sync')
-const robots = {
-  text: require('./robots/text.js')
-}
+const readline = require('readline-sync');
+const trends = require('./searchHotTrends');
 
-async function start() {
-  const content = {}
+function start() {
+  const searchFields = {};
 
-  content.searchTerm = askAndReturnSearchTerm()
-  content.prefix = askAndReturnPrefix()
-
-  await robots.text(content)
+  askAndReturnSearchTerm()
+      .then(term => {
+        searchFields.searchTerm = term;
+        searchFields.prefix = askAndReturnPrefix();
+        console.log(searchFields);
+      });
 
   function askAndReturnSearchTerm() {
-    return readline.question('Type a Wikipedia search term: ')
+    let typedTerm = readline.question('Type a search term or press <Enter> to get a list of hot terms: ');
+    if (typedTerm)
+      return new Promise(resolve => resolve(typedTerm));
+    else {
+      console.log('Auto searching for hot terms online...');
+      return trends.searchHotTrends()
+          .then(function (hotTerms) {
+            return getUserOptionInput(hotTerms, 'Choose on term: ');
+          });
+    }
+  }
+
+  function getUserOptionInput(options, message) {
+    const selectedOption = readline.keyInSelect(options, message);
+    return options[selectedOption];
   }
 
   function askAndReturnPrefix() {
-    const prefixes = ['Who is', 'What is', 'The history of']
-    const selectedPrefixIndex = readline.keyInSelect(prefixes, 'Choose one option: ')
-    const selectedPrefixText = prefixes[selectedPrefixIndex]
-
-    return selectedPrefixText
+    const prefixes = ['Who is', 'What is', 'The history of'];
+    return getUserOptionInput(prefixes, 'Choose one option: ');
   }
-
-  console.log(content)
 }
 
-start()
+start();
