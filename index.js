@@ -12,10 +12,6 @@ async function start() {
 
   await robots.text(content)
 
-  function askImagePath() {
-  	return readline.question('Type the path of the image: ')
-  }
-
   async function askAndReturnSearchTerm() {
   	const response = readline.question('Type a Wikipedia search term or I to identify an image: ')
 
