@@ -19,6 +19,8 @@
   "dependencies": {
     "algorithmia": "^0.3.10",
     "readline-sync": "^1.4.9",
-    "sbd": "^1.0.14"
+    "sbd": "^1.0.14",
+    "google-trends-api": "4.9.0",
+    "mathjs": "5.6.0",
   }
 }
