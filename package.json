@@ -20,5 +20,8 @@
     "algorithmia": "^0.3.10",
     "readline-sync": "^1.4.9",
     "sbd": "^1.0.14"
+  },
+  "devDependencies": {
+    "dotenv-flow": "^0.2.0"
   }
 }
