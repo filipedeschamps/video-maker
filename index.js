@@ -9,7 +9,7 @@ async function start() {
   const content = {}
 
   content.searchTerm = askAndReturnSearchTerm()
-  content.prefix = await getPrexifTrends(content.searchTerm)
+  content.prefix = await getPrefixTrends(content.searchTerm)
 
   console.log(content)
 
@@ -19,7 +19,7 @@ async function start() {
     return readline.question('Type a Wikipedia search term: ')
   }
 
-  async function getPrexifTrends(searchTerm) {
+  async function getPrefixTrends(searchTerm) {
     const prefixes = ['Who is', 'What is', 'The history of']
     let prefixesTrend = []
     let mostTrend;
