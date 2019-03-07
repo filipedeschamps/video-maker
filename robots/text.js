@@ -1,5 +1,4 @@
 const algorithmia = require('algorithmia')
-const algorithmiaApiKey = require('../credentials/algorithmia.json').apiKey
 const sentenceBoundaryDetection = require('sbd')
 
 async function robot(content) {
@@ -8,7 +7,7 @@ async function robot(content) {
   breakContentIntoSentences(content)
 
   async function fetchContentFromWikipedia(content) {
-    const algorithmiaAuthenticated = algorithmia(algorithmiaApiKey)
+    const algorithmiaAuthenticated = algorithmia(process.env.ALGORITHMIA_API_KEY)
     const wikipediaAlgorithm = algorithmiaAuthenticated.algo('web/WikipediaParser/0.1.2')
     const wikipediaResponde = await wikipediaAlgorithm.pipe(content.searchTerm)
     const wikipediaContent = wikipediaResponde.get()
@@ -38,7 +37,7 @@ async function robot(content) {
   }
 
   function removeDatesInParentheses(text) {
-    return text.replace(/\((?:\([^()]*\)|[^()])*\)/gm, '').replace(/  /g,' ')
+    return text.replace(/\((?:\([^()]*\)|[^()])*\)/gm, '').replace(/  /g, ' ')
   }
 
   function breakContentIntoSentences(content) {
