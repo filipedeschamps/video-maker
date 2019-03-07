@@ -1,4 +1,6 @@
 const readline = require('readline-sync')
+const googleTrends = require('google-trends-api');
+const math = require('mathjs')
 const robots = {
   text: require('./robots/text.js')
 }
@@ -7,7 +9,9 @@ async function start() {
   const content = {}
 
   content.searchTerm = askAndReturnSearchTerm()
-  content.prefix = askAndReturnPrefix()
+  content.prefix = await getPrefixTrends(content.searchTerm)
+
+  console.log(content)
 
   await robots.text(content)
 
@@ -15,12 +19,31 @@ async function start() {
     return readline.question('Type a Wikipedia search term: ')
   }
 
-  function askAndReturnPrefix() {
+  async function getPrefixTrends(searchTerm) {
     const prefixes = ['Who is', 'What is', 'The history of']
-    const selectedPrefixIndex = readline.keyInSelect(prefixes, 'Choose one option: ')
-    const selectedPrefixText = prefixes[selectedPrefixIndex]
+    let prefixesTrend = []
+    let mostTrend;
+    prefixes.forEach((elem) => {
+      prefixesTrend.push(elem + ' ' + searchTerm);
+    });
 
-    return selectedPrefixText
+    return googleTrends.interestOverTime({ keyword: prefixesTrend }).then((results) => {
+      let data = JSON.parse(results);
+      let values = [];
+      data.default.timelineData.forEach((elem) => {
+        values.push(elem.value);
+      });
+
+      let mostTrends = [];
+      math.transpose(values).forEach((elem) => {
+        mostTrends.push(math.sum(elem));
+      });
+
+      return prefixes[mostTrends.indexOf(math.max(mostTrends))];
+    }).catch((err) => {
+      console.error('Oh no there was an error', err);
+      return prefixes[Math.random() * prefixes.length];
+    });
   }
 
   console.log(content)
