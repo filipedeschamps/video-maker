@@ -22,7 +22,7 @@ function askAndReturnAnswers() {
 
   return new Promise(async (resolve, reject) => {
     const promptOptions = {
-      onCancel: () => reject(new Error('The user has stopped answer'))
+      onCancel: () => reject(new Error('The user has stopped answering'))
     }
     const response = await prompts(questions, promptOptions)
     resolve(response)
