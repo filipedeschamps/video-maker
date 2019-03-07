@@ -1,3 +1,6 @@
+require('dotenv-flow').config({
+  default_node_env: 'development'
+});
 const readline = require('readline-sync')
 const robots = {
   text: require('./robots/text.js')
