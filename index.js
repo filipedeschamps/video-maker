@@ -13,14 +13,14 @@ async function start() {
   await robots.text(content)
 
   async function askAndReturnSearchTerm() {
-  	const response = readline.question('Type a Wikipedia search term or I to identify an image: ')
+    const response = readline.question('Type a Wikipedia search term or I to identify an image: ')
 
-  	return (response.toUpperCase() === 'I') ?  await askAndReturnClassifiedImage() : response
+    return (response.toUpperCase() === 'I') ?  await askAndReturnClassifiedImage() : response
   }
 
   async function askAndReturnClassifiedImage() {
-  	const imagePath = readline.question('Type the image path: ')
-  	return await robots.imageClassifier(imagePath)
+    const imagePath = readline.question('Type the image path: ')
+    return await robots.imageClassifier(imagePath)
   }
 
   function askAndReturnPrefix() {
