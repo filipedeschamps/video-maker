@@ -62,3 +62,6 @@ typings/
 
 # credentials
 credentials/*.json
+
+# webstorm ide files
+.idea
