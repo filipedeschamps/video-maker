@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/filipedeschamps/video-maker#readme",
   "dependencies": {
-    "google-trends-api": "^4.9.0",
-    "readline-sync": "^1.4.9"
+    "algorithmia": "^0.3.10",
+    "prompts": "^2.0.3",
+    "sbd": "^1.0.14"
   }
 }

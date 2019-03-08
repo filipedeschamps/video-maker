@@ -1,34 +1,42 @@
-const readline = require('readline-sync');
+const prompts = require('prompts')
+const robots = {
+  text: require('./robots/text.js')
+}
 const trends = require('./searchHotTrends');
 
-async function start() {
-  const searchFields = {};
-
-  searchFields.searchTerm = await askAndReturnSearchTerm();
-  searchFields.prefix = askAndReturnPrefix();
-
-  console.log(searchFields);
-  
-  async function askAndReturnSearchTerm() {
-    let typedTerm = readline.question('Type a search term or press <Enter> to get a list of hot terms: ');
-    if (typedTerm)
-      return typedTerm;
-    else {
-      console.log('Auto searching for hot terms online...');
-      const hotTerms = await trends.searchHotTrends(9);      
-      return getUserOptionInput(hotTerms, 'Choose one term: ');
+async function askAndReturnAnswers() {
+  const questions = [
+    {
+      type: 'select',
+      name: 'searchTerm',
+      message: 'Choose one search term:',
+      choices: await trends.searchHotTrends(count=9),
+      validate: value => typeof value === 'string' ? value.trim() !== '' : false,
+    },
+    {
+      type: 'select',
+      name: 'prefix',
+      message: 'Choose one option:',
+      choices: ['Who is', 'What is', 'The history of'],
+      validate: value => typeof value === 'string' ? value.trim() !== '' : false,
     }
-  }
+  ];
 
-  function getUserOptionInput(options, message) {
-    const selectedOption = readline.keyInSelect(options, message);
-    return options[selectedOption];
-  }
+  return new Promise(async (resolve, reject) => {
+    const promptOptions = {
+      onCancel: () => reject(new Error('The user has stopped answering'))
+    }
+    const response = await prompts(questions, promptOptions)
+    resolve(response)
+  });
+}
 
-  function askAndReturnPrefix() {
-    const prefixes = ['Who is', 'What is', 'The history of'];
-    return getUserOptionInput(prefixes, 'Choose one option: ');
-  }
+async function start() {
+  const content = await askAndReturnAnswers()
+
+  await robots.text(content)
+
+  console.log(content);
 }
 
 start();
