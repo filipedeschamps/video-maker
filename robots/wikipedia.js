@@ -78,12 +78,24 @@ async function Wikipedia(content) {
         map.forEach(function(e){
             value = e;
         });
-        value.links.forEach(e => {
-            links.push(e.title)
-        });
-        value.extlinks.forEach(e => {
-            references.push(e['*'])
-        });
+        try{
+            value.links.forEach(e => {
+                links.push(e.title)
+            });
+        }catch(Ex){
+            console.log('----------------------------')
+            console.log('Any Links in this search')
+            console.log('----------------------------')
+        }
+        try{
+            value.extlinks.forEach(e => {
+                references.push(e['*'])
+            });
+        }catch(Ex){
+            console.log('----------------------------')
+            console.log('Any Reference in this search')
+            console.log('----------------------------')
+        }
         pageid = value.pageid;
         ctn = value.extract;
         summary =  value.extract.split('\n\n\n')[0]
