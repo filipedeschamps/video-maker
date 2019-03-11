@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/filipedeschamps/video-maker#readme",
   "dependencies": {
-    "algorithmia": "^0.3.10",
     "readline-sync": "^1.4.9",
-    "sbd": "^1.0.14"
+    "rss-parser": "^3.6.3",
+    "sbd": "^1.0.14",
+    "superagent": "^4.1.0",
+    "unidecode": "^0.1.8"
   }
 }
