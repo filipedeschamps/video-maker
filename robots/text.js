@@ -2,7 +2,7 @@
 // const algorithmiaApiKey = require('../credentials/algorithmia.json').apiKey
 const sentenceBoundaryDetection = require('sbd')
 
-async function robot(content) {
+async function Text(content) {
   // await fetchContentFromWikipedia(content)
   sanitizeContent(content)
   breakContentIntoSentences(content)
@@ -25,10 +25,10 @@ async function robot(content) {
   // }
 
   function sanitizeContent(content) {
-    const withoutBlankLinesAndMarkdown = removeBlankLinesAndMarkdown(content.sourceContentOriginal)
+    const withoutBlankLinesAndMarkdown = removeBlankLinesAndMarkdown(content.wikiPediaContent.content)
     const withoutDatesInParentheses = removeDatesInParentheses(withoutBlankLinesAndMarkdown)
 
-    content.sourceContentSanitized = withoutDatesInParentheses
+    content.wikiPediaContent.sourceContentSanitized = withoutDatesInParentheses
 
     function removeBlankLinesAndMarkdown(text) {
       const allLines = text.split('\n')
@@ -52,7 +52,7 @@ async function robot(content) {
   function breakContentIntoSentences(content) {
     content.sentences = []
 
-    const sentences = sentenceBoundaryDetection.sentences(content.sourceContentSanitized)
+    const sentences = sentenceBoundaryDetection.sentences(content.wikiPediaContent.sourceContentSanitized)
     sentences.forEach((sentence) => {
       content.sentences.push({
         text: sentence,
@@ -64,4 +64,4 @@ async function robot(content) {
 
 }
 
-module.exports = robot
+module.exports = Text

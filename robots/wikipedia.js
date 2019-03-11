@@ -11,7 +11,6 @@ async function Wikipedia(content) {
     var url = '';
     const links = [];
     const references = [];
-    var structure
 
 
     console.log('Fetching from Wikipedia...')
@@ -20,8 +19,7 @@ async function Wikipedia(content) {
     console.log('Searching content...')
     await getContent();
     console.log('Building Structure to others Robots...')
-    structure = buildStructure();
-    content.sourceContentOriginal =  structure.content
+    return await buildStructure();
     
     /*
     *
