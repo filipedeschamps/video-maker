@@ -25,13 +25,9 @@ async function robot(content) {
     function removeBlankLinesAndMarkdown(text) {
       const allLines = text.split('\n')
 
-      const withoutBlankLinesAndMarkdown = allLines.filter((line) => {
-        if (line.trim().length === 0 || line.trim().startsWith('=')) {
-          return false
-        }
-
-        return true
-      })
+      const withoutBlankLinesAndMarkdown = allLines.filter(
+        (line) => !(line.trim().length === 0 || line.trim().startsWith('='))
+      )
 
       return withoutBlankLinesAndMarkdown.join(' ')
     }
