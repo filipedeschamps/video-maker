@@ -1,11 +1,34 @@
 const algorithmia = require('algorithmia')
 const algorithmiaApiKey = require('../credentials/algorithmia.json').apiKey
 const sentenceBoundaryDetection = require('sbd')
+const readline = require('readline-sync')
 
 async function robot(content) {
-  await fetchContentFromWikipedia(content)
+  if(askAboutFormOfGetContentOriginal() === 0){
+    await getContentTyped(content)
+  }else{
+    await fetchContentFromWikipedia(content)
+  }
+  
   sanitizeContent(content)
   breakContentIntoSentences(content)
+
+  function askAboutFormOfGetContentOriginal() {
+    const prefixes = ['Send', 'Wikipedia']
+    const selectedPrefixIndex = readline.keyInSelect(prefixes, 'Choose one option: ')
+
+    return selectedPrefixIndex
+  }
+
+  function getContentTyped(content){
+    let phrase;
+    while(phrase != "end"){
+      phrase = readline.question('Type the content: ')
+      if(phrase != "end"){
+        content.sourceContentOriginal += phrase
+      }
+    }
+  }
 
   async function fetchContentFromWikipedia(content) {
     const algorithmiaAuthenticated = algorithmia(algorithmiaApiKey)
@@ -23,6 +46,7 @@ async function robot(content) {
     content.sourceContentSanitized = withoutDatesInParentheses
 
     function removeBlankLinesAndMarkdown(text) {
+      console.log(text)
       const allLines = text.split('\n')
 
       const withoutBlankLinesAndMarkdown = allLines.filter((line) => {
