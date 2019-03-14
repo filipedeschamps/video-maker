@@ -21,11 +21,14 @@ async function robot(content) {
   }
 
   function getContentTyped(content){
-    let phrase;
-    while(phrase != "end"){
-      phrase = readline.question('Type the content: ')
-      if(phrase != "end"){
-        content.sourceContentOriginal += phrase
+    let newPhrase = "";
+    let completeText = "";
+    while(newPhrase != "end"){
+      newPhrase = readline.question('Type the content (type "end" to exit): ')
+      if(newPhrase != "end"){
+        completeText += newPhrase+' '
+      }else{
+        content.sourceContentOriginal = completeText
       }
     }
   }
