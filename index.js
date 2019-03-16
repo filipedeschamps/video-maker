@@ -8,13 +8,23 @@ async function start() {
     maximumSentences: 7
   }
 
-  content.searchTerm = askAndReturnSearchTerm()
+  content.searchTerm = await askAndReturnSearchTerm()
   content.prefix = askAndReturnPrefix()
 
+  await robots.text(content)
+  await askAndReturnPossibleTitles()
   await robots.text(content)
 
   function askAndReturnSearchTerm() {
     return readline.question('Type a Wikipedia search term: ')
+  }
+
+  async function askAndReturnPossibleTitles() {
+    const titlesPrefixes = content.titlePrefixes
+    const selectedTitlePrefixIndex = readline.keyInSelect(titlesPrefixes, 'Choose one title:')
+    const selectedTitlePrefixText = titlesPrefixes[selectedTitlePrefixIndex]
+
+    content.selectedTerm = selectedTitlePrefixText
   }
 
   function askAndReturnPrefix() {

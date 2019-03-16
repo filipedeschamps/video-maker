@@ -1,5 +1,4 @@
-const algorithmia = require('algorithmia')
-const algorithmiaApiKey = require('../credentials/algorithmia.json').apiKey
+const fetch = require('node-fetch')
 const sentenceBoundaryDetection = require('sbd')
 
 const watsonApiKey = require('../credentials/watson-nlu.json').apikey
@@ -12,19 +11,47 @@ var nlu = new NaturalLanguageUnderstandingV1({
 })
 
 async function robot(content) {
+  await getWikipediaTitleContent(content)
   await fetchContentFromWikipedia(content)
   sanitizeContent(content)
   breakContentIntoSentences(content)
   limitMaximumSentences(content)
   await fetchKeywordsOfAllSentences(content)
 
-  async function fetchContentFromWikipedia(content) {
-    const algorithmiaAuthenticated = algorithmia(algorithmiaApiKey)
-    const wikipediaAlgorithm = algorithmiaAuthenticated.algo('web/WikipediaParser/0.1.2')
-    const wikipediaResponse = await wikipediaAlgorithm.pipe(content.searchTerm)
-    const wikipediaContent = wikipediaResponse.get()
+  async function getWikipediaTitleContent(content) {
+    try {
+        const response = await fetch( `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(content.searchTerm)}&utf8=&format=json`)
+        const wikipediaRawTitles = await response.json()
 
-    content.sourceContentOriginal = wikipediaContent.content
+        const wikipediaTitles = wikipediaRawTitles.query.search
+
+        const arrayTitles = []
+
+        for (let x in wikipediaTitles) {
+            await arrayTitles.push(wikipediaTitles[x].title)
+        }
+
+        content.titlePrefixes = arrayTitles
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+  async function fetchContentFromWikipedia(content) {
+    try {
+        const response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=true&explaintext&titles=${encodeURIComponent(content.selectedTerm)}&format=json`)
+        const wikipediaRawResponse = await response.json()
+
+        const wikipediaRawContent = wikipediaRawResponse.query.pages
+
+        Object.keys(wikipediaRawContent).forEach((key) => {
+            content.sourceContentOriginal = wikipediaRawContent[key]['extract']
+        })
+
+    } catch (error) {
+        console.log(error)
+    }
   }
 
   function sanitizeContent(content) {
