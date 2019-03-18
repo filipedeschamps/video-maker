@@ -1,5 +1,5 @@
 export interface ISentence {
-    text?: string // The parameter used to filter the maximum sentences quantity
-    keywords?: string[] // The search term that the user types
-    images?: string[] // The prefix the user selectse broken sentences found on wikipedia
+    text?: string // The text of the sentence
+    keywords?: string[] // Keywords found in this sentence
+    images?: string[] // Images related to this sentence
 }
