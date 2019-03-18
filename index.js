@@ -2,7 +2,7 @@ const readline = require('readline-sync')
 const Parser = require('rss-parser');
 const robots = {
   text: require('./robots/text.js')
-}
+} 
 
 async function start() {
  const content = {
