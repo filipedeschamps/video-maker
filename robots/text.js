@@ -1,6 +1,6 @@
 const algorithmia = require('algorithmia')
 const algorithmiaApiKey = require('../credentials/algorithmia.json').apiKey
-const sentenceBoundaryDetection = require('sbd')
+const summary = require('lexrank.js')
 
 const watsonApiKey = require('../credentials/watson-nlu.json').apikey
 const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js')
@@ -14,7 +14,7 @@ var nlu = new NaturalLanguageUnderstandingV1({
 async function robot(content) {
   await fetchContentFromWikipedia(content)
   sanitizeContent(content)
-  breakContentIntoSentences(content)
+  breakContentIntoLexicalRankedSentences(content)
   limitMaximumSentences(content)
   await fetchKeywordsOfAllSentences(content)
 
@@ -24,7 +24,7 @@ async function robot(content) {
     const wikipediaResponse = await wikipediaAlgorithm.pipe(content.searchTerm)
     const wikipediaContent = wikipediaResponse.get()
 
-    content.sourceContentOriginal = wikipediaContent.content
+    content.sourceContentOriginal = wikipediaContent.summary
   }
 
   function sanitizeContent(content) {
@@ -52,15 +52,22 @@ async function robot(content) {
     return text.replace(/\((?:\([^()]*\)|[^()])*\)/gm, '').replace(/  /g,' ')
   }
 
-  function breakContentIntoSentences(content) {
+  function breakContentIntoLexicalRankedSentences(content) {
     content.sentences = []
 
-    const sentences = sentenceBoundaryDetection.sentences(content.sourceContentSanitized)
-    sentences.forEach((sentence) => {
-      content.sentences.push({
-        text: sentence,
-        keywords: [],
-        images: []
+    summary.lexrank(content.sourceContentSanitized, (err, result) => {
+      if (err) {
+        throw error
+      }
+
+      sentences = result[0].sort(function(a,b){return b.weight.average - a.weight.average})
+      
+      sentences.forEach((sentence) => {
+        content.sentences.push({
+          text: sentence.text,
+          keywords: [],
+          images: []
+        })
       })
     })
   }
