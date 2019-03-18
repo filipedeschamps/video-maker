@@ -62,3 +62,6 @@ typings/
 
 # credentials
 credentials/*.json
+
+# typescript files
+dist
