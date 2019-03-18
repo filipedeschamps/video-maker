@@ -65,3 +65,6 @@ credentials/*.json
 
 # typescript files
 dist
+
+# vscode files
+.vscode
