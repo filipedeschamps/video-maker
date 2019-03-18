@@ -1,24 +1,25 @@
-const algorithmia = require('algorithmia')
-const algorithmiaApiKey = require('../credentials/algorithmia.json').apiKey
-const sentenceBoundaryDetection = require('sbd')
+import algorithmia from 'algorithmia'
+import sentenceBoundaryDetection from 'sbd'
+import { apiKey as algorithmiaApiKey } from './../credentials/algorithmia.json'
+import { apikey as watsonApiKey } from './../credentials/watson-nlu.json'
+import { IContent } from './../interfaces/IContent'
 
-const watsonApiKey = require('../credentials/watson-nlu.json').apikey
-const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js')
- 
-var nlu = new NaturalLanguageUnderstandingV1({
+const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1')
+
+const nlu = new NaturalLanguageUnderstandingV1({
   iam_apikey: watsonApiKey,
   version: '2018-04-05',
   url: 'https://gateway.watsonplatform.net/natural-language-understanding/api/'
 })
 
-async function robot(content) {
+export async function textRobot(content: IContent) {
   await fetchContentFromWikipedia(content)
   sanitizeContent(content)
   breakContentIntoSentences(content)
   limitMaximumSentences(content)
   await fetchKeywordsOfAllSentences(content)
 
-  async function fetchContentFromWikipedia(content) {
+  async function fetchContentFromWikipedia(content: IContent): Promise<void> {
     const algorithmiaAuthenticated = algorithmia(algorithmiaApiKey)
     const wikipediaAlgorithm = algorithmiaAuthenticated.algo('web/WikipediaParser/0.1.2')
     const wikipediaResponse = await wikipediaAlgorithm.pipe(content.searchTerm)
@@ -27,13 +28,13 @@ async function robot(content) {
     content.sourceContentOriginal = wikipediaContent.content
   }
 
-  function sanitizeContent(content) {
+  function sanitizeContent(content: IContent): void {
     const withoutBlankLinesAndMarkdown = removeBlankLinesAndMarkdown(content.sourceContentOriginal)
     const withoutDatesInParentheses = removeDatesInParentheses(withoutBlankLinesAndMarkdown)
 
     content.sourceContentSanitized = withoutDatesInParentheses
 
-    function removeBlankLinesAndMarkdown(text) {
+    function removeBlankLinesAndMarkdown(text: string): string {
       const allLines = text.split('\n')
 
       const withoutBlankLinesAndMarkdown = allLines.filter((line) => {
@@ -48,11 +49,11 @@ async function robot(content) {
     }
   }
 
-  function removeDatesInParentheses(text) {
-    return text.replace(/\((?:\([^()]*\)|[^()])*\)/gm, '').replace(/  /g,' ')
+  function removeDatesInParentheses(text: string): string {
+    return text.replace(/\((?:\([^()]*\)|[^()])*\)/gm, '').replace(/  /g, ' ')
   }
 
-  function breakContentIntoSentences(content) {
+  function breakContentIntoSentences(content: IContent): void {
     content.sentences = []
 
     const sentences = sentenceBoundaryDetection.sentences(content.sourceContentSanitized)
@@ -65,17 +66,17 @@ async function robot(content) {
     })
   }
 
-  function limitMaximumSentences(content) {
+  function limitMaximumSentences(content: IContent): void {
     content.sentences = content.sentences.slice(0, content.maximumSentences)
   }
 
-  async function fetchKeywordsOfAllSentences(content) {
+  async function fetchKeywordsOfAllSentences(content: IContent): Promise<void> {
     for (const sentence of content.sentences) {
       sentence.keywords = await fetchWatsonAndReturnKeywords(sentence.text)
     }
   }
 
-  async function fetchWatsonAndReturnKeywords(sentence) {
+  async function fetchWatsonAndReturnKeywords(sentence): Promise<string[]> {
     return new Promise((resolve, reject) => {
       nlu.analyze({
         text: sentence,
@@ -97,5 +98,3 @@ async function robot(content) {
   }
 
 }
-
-module.exports = robot
