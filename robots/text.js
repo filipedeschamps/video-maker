@@ -1,6 +1,7 @@
 const algorithmia = require('algorithmia')
 const algorithmiaApiKey = require('../credentials/algorithmia.json').apiKey
 const sentenceBoundaryDetection = require('sbd')
+const fetch = require('node-fetch')
 
 const watsonApiKey = require('../credentials/watson-nlu.json').apikey
 const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js')
@@ -12,19 +13,45 @@ var nlu = new NaturalLanguageUnderstandingV1({
 })
 
 async function robot(content) {
-  await fetchContentFromWikipedia(content)
+
+  if(content.useFecthContentFromWikipediaAlgorithmia){
+    await fecthContentFromWikipediaAlgorithmia(content)
+  }else{
+    await fetchContentFromWikipedia(content)
+  }
+
   sanitizeContent(content)
   breakContentIntoSentences(content)
   limitMaximumSentences(content)
   await fetchKeywordsOfAllSentences(content)
 
-  async function fetchContentFromWikipedia(content) {
+  async function fecthContentFromWikipediaAlgorithmia(content) {
     const algorithmiaAuthenticated = algorithmia(algorithmiaApiKey)
     const wikipediaAlgorithm = algorithmiaAuthenticated.algo('web/WikipediaParser/0.1.2')
-    const wikipediaResponse = await wikipediaAlgorithm.pipe(content.searchTerm)
+    //const wikipediaResponse = await wikipediaAlgorithm.pipe(content.searchTerm)
+    const wikipediaResponse = await wikipediaAlgorithm.pipe({
+      "articleName": content.searchTerm,
+      "lang": content.lang
+    })
     const wikipediaContent = wikipediaResponse.get()
 
     content.sourceContentOriginal = wikipediaContent.content
+  }
+
+  async function fetchContentFromWikipedia(content) {
+    try {
+        const response = await fetch(`https://${content.lang}.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=true&explaintext&titles=${encodeURIComponent(content.searchTerm)}&format=json`)
+        const wikipediaRawResponse = await response.json()
+
+        const wikipediaRawContent = wikipediaRawResponse.query.pages
+
+        Object.keys(wikipediaRawContent).forEach((key) => {
+            content.sourceContentOriginal = wikipediaRawContent[key]['extract']
+        })
+
+    } catch (error) {
+        console.log(error)
+    }
   }
 
   function sanitizeContent(content) {
