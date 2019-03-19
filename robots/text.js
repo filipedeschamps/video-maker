@@ -14,7 +14,7 @@ var nlu = new NaturalLanguageUnderstandingV1({
 async function robot(content) {
   await fetchContentFromWikipedia(content)
   sanitizeContent(content)
-  breakContentIntoLexicalRankedSentences(content)
+  await breakContentIntoLexicalRankedSentences(content)
   limitMaximumSentences(content)
   await fetchKeywordsOfAllSentences(content)
 
@@ -52,22 +52,27 @@ async function robot(content) {
     return text.replace(/\((?:\([^()]*\)|[^()])*\)/gm, '').replace(/  /g,' ')
   }
 
-  function breakContentIntoLexicalRankedSentences(content) {
-    content.sentences = []
+  async function breakContentIntoLexicalRankedSentences(content) {
+    return new Promise((resolve, reject) => {
+      content.sentences = []
 
-    summary.lexrank(content.sourceContentSanitized, (err, result) => {
-      if (err) {
-        throw error
-      }
+      summary.lexrank(content.sourceContentSanitized, (error, result) => {
+        if (error) {
+          throw error
+          return reject(error)
+        }
 
-      sentences = result[0].sort(function(a,b){return b.weight.average - a.weight.average})
-      
-      sentences.forEach((sentence) => {
-        content.sentences.push({
-          text: sentence.text,
-          keywords: [],
-          images: []
+        sentences = result[0].sort(function(a,b){return b.weight.average - a.weight.average})
+        
+        sentences.forEach((sentence) => {
+          content.sentences.push({
+            text: sentence.text,
+            keywords: [],
+            images: []
+          })
         })
+
+        resolve(sentences)
       })
     })
   }
