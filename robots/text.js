@@ -1,6 +1,6 @@
 const algorithmia = require('algorithmia')
 const algorithmiaApiKey = require('../credentials/algorithmia.json').apiKey
-const sentenceBoundaryDetection = require('sbd')
+const summary = require('lexrank.js')
 
 const watsonApiKey = require('../credentials/watson-nlu.json').apikey
 const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js')
@@ -18,7 +18,7 @@ async function robot() {
 
   await fetchContentFromWikipedia(content)
   sanitizeContent(content)
-  breakContentIntoSentences(content)
+  await breakContentIntoLexicalRankedSentences(content)
   limitMaximumSentences(content)
   await fetchKeywordsOfAllSentences(content)
 
@@ -30,7 +30,7 @@ async function robot() {
     const wikipediaResponse = await wikipediaAlgorithm.pipe(content.searchTerm)
     const wikipediaContent = wikipediaResponse.get()
 
-    content.sourceContentOriginal = wikipediaContent.content
+    content.sourceContentOriginal = wikipediaContent.summary
   }
 
   function sanitizeContent(content) {
@@ -58,15 +58,27 @@ async function robot() {
     return text.replace(/\((?:\([^()]*\)|[^()])*\)/gm, '').replace(/  /g,' ')
   }
 
-  function breakContentIntoSentences(content) {
-    content.sentences = []
+  async function breakContentIntoLexicalRankedSentences(content) {
+    return new Promise((resolve, reject) => {
+      content.sentences = []
 
-    const sentences = sentenceBoundaryDetection.sentences(content.sourceContentSanitized)
-    sentences.forEach((sentence) => {
-      content.sentences.push({
-        text: sentence,
-        keywords: [],
-        images: []
+      summary.lexrank(content.sourceContentSanitized, (error, result) => {
+        if (error) {
+          throw error
+          return reject(error)
+        }
+
+        sentences = result[0].sort(function(a,b){return b.weight.average - a.weight.average})
+        
+        sentences.forEach((sentence) => {
+          content.sentences.push({
+            text: sentence.text,
+            keywords: [],
+            images: []
+          })
+        })
+
+        resolve(sentences)
       })
     })
   }
