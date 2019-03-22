@@ -51,7 +51,7 @@ function sanitizeContent(content) {
 }
 
 function removeDatesInParentheses(text) {
-  return text.replace(/\((?:\([^()]*\)|[^()])*\)/gm, '').replace(/  /g,' ')
+  return text.replace(/\((?:\([^()]*\)|[^()])*\)/gm, '').replace(/\s+/g,' ')
 }
 
 function breakContentIntoSentences(content) {
