@@ -72,9 +72,11 @@ function limitMaximumSentences(content) {
 }
 
 async function fetchKeywordsOfAllSentences(content) {
-  for (const sentence of content.sentences) {
-    sentence.keywords = await fetchWatsonAndReturnKeywords(sentence.text)
-  }
+  await Promise.all(
+    content.sentences.map(
+      async sentence => sentence.keywords = await fetchWatsonAndReturnKeywords(sentence.text)
+    )
+  )
 }
 
 async function fetchWatsonAndReturnKeywords(sentence) {
