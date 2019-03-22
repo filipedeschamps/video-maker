@@ -42,14 +42,10 @@ function sanitizeContent(content) {
   function removeBlankLinesAndMarkdown(text) {
     const allLines = text.split('\n')
 
-    const withoutBlankLinesAndMarkdown = allLines.filter((line) => {
-      if (line.trim().length === 0 || line.trim().startsWith('=')) {
-        return false
-      }
+    const withoutBlankLinesAndMarkdown = allLines.filter(
+      line => line.trim() && !line.trim().startsWith('=') 
+    )
 
-      return true
-    })
-    
     return withoutBlankLinesAndMarkdown.join(' ')
   }
 }
