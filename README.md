@@ -1,15 +1,31 @@
-Funcionamento
-- entre com um texto
-- obtenha um objeto com a responsa (TODO implementar)
+### Welcome to video maker
 
-Objetivo dessa api
-- expor serviços para ser consumido via https://github.com/faustoct/4linked-app
-- expor serviços para ser consumido via https://github.com/faustoct/4linked-web
-- facilitar o consumo e manutenção do serviço
-- outros programadores possam contribuir apenas na api
+## What is it?
+This project creates short videos by itself using artificial intelligence about the following topics:
+- Who is Michael Jackson?
+- History of Bacon
+- What is Facebook?
 
-Infos extra dessa api
-- Usamos a lib video-maker para fazer vídeos automatizados com imagens e textos
-- Detalhes de como criar uma api rest https://www.youtube.com/watch?v=fBrOtR3pgPU
-- Fork do repositório video-maker https://github.com/filipedeschamps/video-maker
-- Arquitetura da api (TODO add no https://stackshare.io/)
+## How does it work?
+1. You input something
+2. The bots start looking to the web to collect content
+3. Find text in the wikipedia using algorithmia
+4. Classify content extracting tags from wikipedia using watson
+5. It looks for related images on google image
+6. Build up the content with text, videos and song
+7. Upload the content to youtube
+
+## Install in your machine
+1. Run `git clone https://github.com/filipedeschamps/video-maker` in your computer.
+2. Register at algorithmia
+3. Register at watson
+4. Setup (copy and paste from the site) your algorithmia in `credentials/algorithmia.json`
+5. Setup (copy and paste from the site) your watson in `credentials/watson-nlu.json`
+
+## Run
+`node index.js`
+
+## Result
+https://www.youtube.com/channel/UCX-Y90wbf76a8aINsxeBZew/videos
+
+
