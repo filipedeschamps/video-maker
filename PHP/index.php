@@ -8,7 +8,7 @@
     <body>
         <?php
         // put your code here
-
+        echo 'input-user';
         ?>
     </body>
 </html>
