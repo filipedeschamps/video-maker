@@ -9,7 +9,6 @@ async function robot() {
   const content = state.load()
 
   await fetchImagesOfAllSentences(content)
-  await controlArrayImageRepeat(content)
   await downloadAllImages(content)
 
   state.save(content)
@@ -42,7 +41,7 @@ async function robot() {
   async function downloadAllImages(content){
 
     content.downloadedImages = []
-    let arrayWithoutRepeatedImages = await controlArrayImageRepeat();
+    let arrayWithoutRepeatedImages = await controlArrayOfImagesRepeated();
      
      for (let imageIndex = 0; imageIndex < arrayWithoutRepeatedImages.length; imageIndex++) {
        const imageUrl = arrayWithoutRepeatedImages[imageIndex]
@@ -55,17 +54,15 @@ async function robot() {
          console.log(`> [${sentenceIndex}][${imageIndex}] Erro ao baixar (${imageUrl}): ${error}`)
        }
      }
-  
-
   }
-  async function controlArrayImageRepeat(content) {
+  async function controlArrayOfImagesRepeated(content) {
 
-    let arrayControlImage = []
+    let arrayOflImage = []
 
     for (let sentenceIndex = 0; sentenceIndex < content.sentences.length; sentenceIndex++) {
-      arrayControlImage.push(content.sentences[sentenceIndex].images)
+      arrayOflImage.push(content.sentences[sentenceIndex].images)
    }
-     return  arrayControlImage = [ ...new Set(arrayControlImage)]
+     return  arrayOflImage = [ ...new Set(arrayOflImage)]
     
   }
 
