@@ -9,7 +9,7 @@ async function robot() {
   const content = state.load()
 
   await fetchImagesOfAllSentences(content)
-  await controlArrayImageRepeat()
+  await controlArrayImageRepeat(content)
   await downloadAllImages(content)
 
   state.save(content)
