@@ -40,7 +40,7 @@ async function robot() {
 
   async function downloadAllImages(content) {
     content.downloadedImages = []
-
+    
     for (let sentenceIndex = 0; sentenceIndex < content.sentences.length; sentenceIndex++) {
       const images = content.sentences[sentenceIndex].images
 
@@ -48,10 +48,6 @@ async function robot() {
         const imageUrl = images[imageIndex]
 
         try {
-          if (content.downloadedImages.includes(imageUrl)) {
-            throw new Error('Imagem já foi baixada')
-          }
-
           await downloadAndSave(imageUrl, `${sentenceIndex}-original.png`)
           content.downloadedImages.push(imageUrl)
           console.log(`> [${sentenceIndex}][${imageIndex}] Baixou imagem com sucesso: ${imageUrl}`)
@@ -61,6 +57,7 @@ async function robot() {
         }
       }
     }
+    content.downloadedImages = [ ...new Set(content.downloadedImages) ]
   }
 
   async function downloadAndSave(url, fileName) {
