@@ -41,7 +41,7 @@ async function robot() {
   async function downloadAllImages(content){
 
     content.downloadedImages = []
-    let arrayWithoutRepeatedImages = await controlArrayOfImagesRepeated();
+    let arrayWithoutRepeatedImages = await controlArrayOfImagesRepeated(content);
      
      for (let imageIndex = 0; imageIndex < arrayWithoutRepeatedImages.length; imageIndex++) {
        const imageUrl = arrayWithoutRepeatedImages[imageIndex]
