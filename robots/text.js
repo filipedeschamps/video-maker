@@ -26,7 +26,7 @@ async function robot(content) {
       const allLines = text.split('\n')
 
       const withoutBlankLinesAndMarkdown = allLines.filter(
-        (line) => !(line.trim().length === 0 || line.trim().startsWith('='))
+        (line) => line.trim() && !line.trim().startsWith('=')
       )
 
       return withoutBlankLinesAndMarkdown.join(' ')
