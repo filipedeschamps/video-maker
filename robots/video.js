@@ -1,4 +1,6 @@
 const gm = require('gm').subClass({imageMagick: true})
+const hbjs = require("handbrake-js")
+const fs = require("fs")
 const state = require('./state.js')
 const spawn = require('child_process').spawn
 const path = require('path')
@@ -146,6 +148,7 @@ async function robot() {
       const aerenderFilePath = '/Applications/Adobe After Effects CC 2019/aerender'
       const templateFilePath = `${rootPath}/templates/1/template.aep`
       const destinationFilePath = `${rootPath}/content/output.mov`
+      const destinationFilePathConverted = `${rootPath}/content/output.mp4`
 
       console.log('> [video-robot] Starting After Effects')
 
@@ -161,7 +164,27 @@ async function robot() {
 
       aerender.on('close', () => {
         console.log('> [video-robot] After Effects closed')
-        resolve()
+        console.log("> [video-robot] Convert to .mp4")
+        hbjs
+          .spawn({
+            input: destinationFilePath,
+            output: destinationFilePathConverted
+          })
+          .on("error", err => {
+            // invalid user input, no video found etc
+            console.error(`> [video-robot] Error found while trying to convert video: ${err}`)
+          })
+          .on("complete", progress => {
+            console.log("> [video-robot] Encoding finished successfully");
+            //remove big MOV file
+            fs.unlinkSync(destinationFilePath, err => {
+              if (err) {
+                console.error(`> [video-robot] Error removing .mov file: ${err}`)
+              }
+              console.log(`> [video-robot] output.MOV removed.`)
+            })
+            resolve()
+          })
       })
     })
   }
