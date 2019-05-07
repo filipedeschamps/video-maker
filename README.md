@@ -138,13 +138,37 @@ Voltando no arquivo **google-search.json** iremos criar uma nova propriedade e i
 }
 ```
 
-> PS.: esse tutorial funciona até o e ultimo video publicado pelo Filipe (commit #82) para clonar a partir desse commit use o comando`git checkout 708632a06ecd35f7e7db96faf8adca7e7e717a0e` conforme os videos forem saindo irei atualizando 😇 
+## Api: YouTube ##
+
+Chegou a hora de configurarmos a api do youtube!, como fizemos na api custom search iremos fazer o mesmo com a api do YoutTube, então basta acessar o [Google Cloud](https://cloud.google.com/) e habilitar o serviço do YouTube, clicando no menu Lateral **Apis e Serviços -> Biblioteca**, na caixa de pesquisa procure por **YouTube**, e click no botão Ativar: 
+
+![ezgif-5-fa13fd3c8407](https://user-images.githubusercontent.com/34013325/57034414-d08cf800-6c25-11e9-9867-03024a30028a.gif)
+
+> Ps. No vídeo o Filipe orienta a criar um novo projeto para adicionar a api do Youtube, porem aqui, estou usando o mesmo projeto que criei para o video-maker, mas caso queria criar um novo projeto basta seguir os passos de **Criando o Projeto** que está no começo desse guia!
+
+Agora clique na guia **Tela de consentimento OAuth** 
+![image](https://user-images.githubusercontent.com/34013325/57034753-c0294d00-6c26-11e9-8ee9-ff5e12ea6470.png)
+
+Em seguida preencha apenas o campo "nome do aplicativo", futuramente você pode voltar aqui para personalizar com as outras informações caso desejar:
+
+![image](https://user-images.githubusercontent.com/34013325/57034907-1d250300-6c27-11e9-8c9f-e2e0d4e95b95.png)
+
+Clique no dropdown **Criar credenciais** e escolha **ID do Cliente OAuth**:
+![image](https://user-images.githubusercontent.com/34013325/57035299-1054df00-6c28-11e9-9a04-a4cef439e41e.png)
+
+Aqui não tem muito segredo, escolha **Aplicativo da Web** para o **Tipo de Aplicativo**, escolha um **nome do aplicativo**, no primeiro campo insira o endereço **http://localhost:5000** e no segundo **http://localhost:5000/oauth2callback** e clique no botão criar:
+
+![image](https://user-images.githubusercontent.com/34013325/57035477-85281900-6c28-11e9-829a-1c0c074bc478.png)
+
+Após ser criada, irá aparecer uma janela com as credenciais, você pode dar ok, pois iremos baixar as credencias como na tela abaixo:
+
+![image](https://user-images.githubusercontent.com/34013325/57036076-aa695700-6c29-11e9-8c4d-fc78fecdae46.png)
+
+renomeio o arquivo para **youtube.json** e salve dentro da pasta **video-maker/credentials** 😄
 
 ## 1.., 2..., 3... Testando! ##
 Agora dentro da pasta **video-maker** você pode abrir o **cmd** ou **powershell** e executar o comando:
 ```
 node index.js
 ```
-![ezgif-5-924644a4b21d](https://user-images.githubusercontent.com/34013325/55579383-79f7d100-56ee-11e9-9bba-b92704a85b08.gif)
-
-
+![ezgif-5-a906cfcd3fd1](https://user-images.githubusercontent.com/34013325/57246263-33f69b80-7013-11e9-97a1-2f84acf2a7fe.gif)
