@@ -143,7 +143,16 @@ async function robot() {
 
   async function renderVideoWithAfterEffects() {
     return new Promise((resolve, reject) => {
-      const aerenderFilePath = '/Applications/Adobe After Effects CC 2019/aerender'
+      const systemPlatform=os.platform
+      
+      if (systemPlatform==darwin){
+        const aerenderFilePath = '/Applications/Adobe After Effects CC 2019/aerender'
+      }else if (systemPlatform==win32){
+        const aerenderFilePath = '%programfiles%/Adobe/' //Buscar pasta no Windows!
+      }else{
+        console.log('System not Supported!')
+      }
+      
       const templateFilePath = `${rootPath}/templates/1/template.aep`
       const destinationFilePath = `${rootPath}/content/output.mov`
 
