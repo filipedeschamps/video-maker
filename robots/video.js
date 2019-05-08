@@ -151,7 +151,7 @@ async function robot() {
       }else if (systemPlatform=='win32'){
         const aerenderFilePath = '%programfiles%\Adobe\Adobe After Effects CC\Arquivos de suporte\aerender.exe'
       }else{
-        console.log('System not Supported!')
+        return reject('System not Supported')
       }
       
       const templateFilePath = `${rootPath}/templates/1/template.aep`
