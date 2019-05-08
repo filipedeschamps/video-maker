@@ -1,10 +1,13 @@
 const algorithmia = require('algorithmia')
 const algorithmiaApiKey = require('../credentials/algorithmia.json').apiKey
+const algorithmiaLang = require('../credentials/algorithmia.json').lang
 const sentenceBoundaryDetection = require('sbd')
 
 const watsonApiKey = require('../credentials/watson-nlu.json').apikey
 const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js')
  
+const gotitaiApiKey = require('../credentials/gotitai.json').apiKey
+
 const nlu = new NaturalLanguageUnderstandingV1({
   iam_apikey: watsonApiKey,
   version: '2018-04-05',
@@ -15,21 +18,24 @@ const state = require('./state.js')
 
 async function robot() {
   console.log('> [text-robot] Starting...')
-  const content = state.load()
-
+  var content = state.load()
   await fetchContentFromWikipedia(content)
   sanitizeContent(content)
   breakContentIntoSentences(content)
   limitMaximumSentences(content)
   await fetchKeywordsOfAllSentences(content)
-
+  await fetchGotItAi(content)
   state.save(content)
 
   async function fetchContentFromWikipedia(content) {
     console.log('> [text-robot] Fetching content from Wikipedia')
     const algorithmiaAuthenticated = algorithmia(algorithmiaApiKey)
     const wikipediaAlgorithm = algorithmiaAuthenticated.algo('web/WikipediaParser/0.1.2')
-    const wikipediaResponse = await wikipediaAlgorithm.pipe(content.searchTerm)
+    var term = {
+	    "articleName": content.searchTerm,
+	    "lang": algorithmiaLang
+    }
+    const wikipediaResponse = await wikipediaAlgorithm.pipe(term)
     const wikipediaContent = wikipediaResponse.get()
 
     content.sourceContentOriginal = wikipediaContent.content
@@ -78,9 +84,48 @@ async function robot() {
     content.sentences = content.sentences.slice(0, content.maximumSentences)
   }
 
+  async function fetchGotItAi(content) {
+    var body =  {   'T': content.sourceContentOriginal, 'EM': true };
+    const fetch = require("node-fetch")
+    const url = "https://api.gotit.ai/NLU/v1.2/Analyze"
+    console.log('> [text-robot] Getting feeling from GotIt.Ai')
+    const getData = async url => {
+    	try {
+		const response = await fetch(url, {
+			'method': 'post',
+			'body':	JSON.stringify(body),
+			'headers': {
+			  'Content-Type': 'application/json',
+			  'Authorization': `Basic ${gotitaiApiKey }`
+	  		}	 
+		})
+		const json = await response.json()
+		let arr = Object.values(json.emotions);
+ 		  let max = Math.max(...arr);
+		  if(json.emotions.sadness == max) {
+			  content.feeling = "sadness"
+		  } else if(json.emotions.joy == max) {
+			  content.feeling = "sadness"
+		  } else if(json.emotions.fear == max) {
+			  content.feeling = "sadness"
+		  } else if(json.emotions.disgust == max) {
+			  content.feeling = "sadness"
+		  } else if(json.emotions.anger == max) {
+			  content.feeling = "sadness"
+		  } else {
+			  content.feeling = "1"
+
+		  }
+		  console.log(`> [text-robot] the feeling is ${content.feeling}: by GotIt.Ai`)
+	} catch (error) {
+		console.log(`> [text-robot] ${error}`)
+	}
+    };
+    await getData(url)
+  }
+
   async function fetchKeywordsOfAllSentences(content) {
     console.log('> [text-robot] Starting to fetch keywords from Watson')
-
     for (const sentence of content.sentences) {
       console.log(`> [text-robot] Sentence: "${sentence.text}"`)
 
