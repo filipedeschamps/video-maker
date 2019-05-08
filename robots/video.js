@@ -2,6 +2,7 @@ const gm = require('gm').subClass({imageMagick: true})
 const state = require('./state.js')
 const spawn = require('child_process').spawn
 const path = require('path')
+const os = require('os');
 const rootPath = path.resolve(__dirname, '..')
 
 
