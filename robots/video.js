@@ -148,7 +148,7 @@ async function robot() {
       if (systemPlatform==darwin){
         const aerenderFilePath = '/Applications/Adobe After Effects CC 2019/aerender'
       }else if (systemPlatform==win32){
-        const aerenderFilePath = '%programfiles%/Adobe/' //Buscar pasta no Windows!
+        const aerenderFilePath = '%programfiles%\Adobe\Adobe After Effects CC\Arquivos de suporte\aerender.exe'
       }else{
         console.log('System not Supported!')
       }
