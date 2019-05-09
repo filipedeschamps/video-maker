@@ -2,13 +2,13 @@ const algorithmia = require('algorithmia')
 const algorithmiaApiKey = require('../credentials/algorithmia.json').apiKey
 const sentenceBoundaryDetection = require('sbd')
 
-const watsonApiKey = require('../credentials/watson-nlu.json').apikey
+const watsonCredentials = require('../credentials/watson-nlu.json')
 const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js')
  
 const nlu = new NaturalLanguageUnderstandingV1({
-  iam_apikey: watsonApiKey,
-  version: '2018-04-05',
-  url: 'https://gateway.watsonplatform.net/natural-language-understanding/api/'
+  iam_apikey: watsonCredentials.apikey,
+  version: watsonCredentials.version,
+  url: watsonCredentials.url
 })
 
 const state = require('./state.js')
