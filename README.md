@@ -5,6 +5,8 @@ Projeto open source para fazer vídeos automatizados
 
 - Git (https://git-scm.com/)
 - Node (https://nodejs.org)
+- ImageMagick (https://imagemagick.org)
+- AfterEffects (https://www.adobe.com/products/aftereffects)
 
 # Instalação
 
