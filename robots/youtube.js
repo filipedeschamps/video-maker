@@ -4,6 +4,7 @@ const youtube = google.youtube({ version: 'v3'})
 const OAuth2 = google.auth.OAuth2
 const state = require('./state.js')
 const fs = require('fs')
+const config = require('../config/config.json')
 
 async function robot() {
   console.log('> [youtube-robot] Starting...')
@@ -39,12 +40,10 @@ async function robot() {
     }
 
     async function createOAuthClient() {
-      const credentials = require('../credentials/google-youtube.json')
-
       const OAuthClient = new OAuth2(
-        credentials.web.client_id,
-        credentials.web.client_secret,
-        credentials.web.redirect_uris[0]
+          config.apis.google_youtube.clientId,
+          config.apis.google_youtube.clientSecret,
+          config.apis.google_youtube.redirectUri
       )
 
       return OAuthClient

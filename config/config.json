@@ -9,6 +9,11 @@
       "apiKey": "API_KEY",
       "searchEngineId": "SEARCH_ENGINE_ID"
     },
+    "google_youtube": {
+      "clientId": "CLIENT_ID",
+      "clientSecret": "CLIENT_SECRET",
+      "redirectUri": "http://localhost:5000/oauth2callback"
+    },
     "watson_nlu": {
       "apikey": "API_KEY",
       "iam_apikey_description": "Auto-generated for key 374e88ae-03c7-40a3-9b53-8bb3425a3f41",
