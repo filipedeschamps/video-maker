@@ -1,0 +1,21 @@
+{
+  "aerender_path" : "PATH_TO_AERENDER",
+  "nlu_version": "2018-04-05",
+  "apis": {
+    "algorithmia": {
+      "apiKey": "API_KEY"
+    },
+    "google_search": {
+      "apiKey": "API_KEY",
+      "searchEngineId": "SEARCH_ENGINE_ID"
+    },
+    "watson_nlu": {
+      "apikey": "API_KEY",
+      "iam_apikey_description": "Auto-generated for key 374e88ae-03c7-40a3-9b53-8bb3425a3f41",
+      "iam_apikey_name": "Auto-generated service credentials",
+      "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+      "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/fa525ad915fc405898adea77bb60beaf::serviceid:ServiceId-f95e992b-d604-4162-a759-7a6669c3954a",
+      "url": "https://gateway.watsonplatform.net/natural-language-understanding/api"
+    }
+  }
+}

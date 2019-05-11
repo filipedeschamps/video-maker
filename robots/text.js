@@ -1,14 +1,13 @@
 const algorithmia = require('algorithmia')
-const algorithmiaApiKey = require('../credentials/algorithmia.json').apiKey
 const sentenceBoundaryDetection = require('sbd')
+const config = require('../config/config')
 
-const watsonCredentials = require('../credentials/watson-nlu.json')
 const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js')
- 
+
 const nlu = new NaturalLanguageUnderstandingV1({
-  iam_apikey: watsonCredentials.apikey,
-  version: watsonCredentials.version,
-  url: watsonCredentials.url
+  iam_apikey: config.apis.watson_nlu.apikey,
+  version: config.nlu_version,
+  url: config.apis.watson_nlu.url,
 })
 
 const state = require('./state.js')
@@ -27,7 +26,7 @@ async function robot() {
 
   async function fetchContentFromWikipedia(content) {
     console.log('> [text-robot] Fetching content from Wikipedia')
-    const algorithmiaAuthenticated = algorithmia(algorithmiaApiKey)
+    const algorithmiaAuthenticated = algorithmia(config.apis.algorithmia.apiKey)
     const wikipediaAlgorithm = algorithmiaAuthenticated.algo('web/WikipediaParser/0.1.2')
     const wikipediaResponse = await wikipediaAlgorithm.pipe(content.searchTerm)
     const wikipediaContent = wikipediaResponse.get()

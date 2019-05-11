@@ -3,6 +3,7 @@ const state = require('./state.js')
 const spawn = require('child_process').spawn
 const path = require('path')
 const rootPath = path.resolve(__dirname, '..')
+const config = require('../config/config')
 
 
 async function robot() {
@@ -143,13 +144,12 @@ async function robot() {
 
   async function renderVideoWithAfterEffects() {
     return new Promise((resolve, reject) => {
-      const aerenderFilePath = '/Applications/Adobe After Effects CC 2019/aerender'
       const templateFilePath = `${rootPath}/templates/1/template.aep`
       const destinationFilePath = `${rootPath}/content/output.mov`
 
       console.log('> [video-robot] Starting After Effects')
 
-      const aerender = spawn(aerenderFilePath, [
+      const aerender = spawn(config.aerender_path, [
         '-comp', 'main',
         '-project', templateFilePath,
         '-output', destinationFilePath

@@ -2,8 +2,7 @@ const imageDownloader = require('image-downloader')
 const google = require('googleapis').google
 const customSearch = google.customsearch('v1')
 const state = require('./state.js')
-
-const googleSearchCredentials = require('../credentials/google-search.json')
+const config = require('../config/config')
 
 async function robot() {
   console.log('> [image-robot] Starting...')
@@ -33,8 +32,8 @@ async function robot() {
 
   async function fetchGoogleAndReturnImagesLinks(query) {
     const response = await customSearch.cse.list({
-      auth: googleSearchCredentials.apiKey,
-      cx: googleSearchCredentials.searchEngineId,
+      auth: config.apis.google_search.apiKey,
+      cx: config.apis.google_search.searchEngineId,
       q: query,
       searchType: 'image',
       num: 2
