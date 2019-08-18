@@ -11,7 +11,8 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 ffmpeg.setFfprobePath(ffprobePath);
 
 async function robot() {
-  const content = state.load();
+  console.log('> [video-robot] Starting...')
+  const content = state.load()
 
   await convertAllImages(content);
   await createAllSentenceImages(content);
@@ -63,10 +64,11 @@ async function robot() {
             return reject(error);
           }
 
-          console.log(`> Image converted: ${inputFile}`);
-          resolve();
-        });
-    });
+          console.log(`> [video-robot] Image converted: ${outputFile}`)
+          resolve()
+        })
+
+    })
   }
 
   async function createAllSentenceImages(content) {
@@ -129,10 +131,10 @@ async function robot() {
             return reject(error);
           }
 
-          console.log(`> Sentence created: ${outputFile}`);
-          resolve();
-        });
-    });
+          console.log(`> [video-robot] Sentence created: ${outputFile}`)
+          resolve()
+        })
+    })
   }
 
   async function createYouTubeThumbnail() {
@@ -144,10 +146,10 @@ async function robot() {
             return reject(error);
           }
 
-          console.log("> Creating YouTube thumbnail");
-          resolve();
-        });
-    });
+          console.log('> [video-robot] YouTube thumbnail created')
+          resolve()
+        })
+    })
   }
 
   async function createAfterEffectsScript(content) {
@@ -161,7 +163,7 @@ async function robot() {
       const templateFilePath = `${rootPath}/templates/1/template.aep`;
       const destinationFilePath = `${rootPath}/content/output.mov`;
 
-      console.log("> Starting After Effects");
+      console.log('> [video-robot] Starting After Effects')
 
       const aerender = spawn(aerenderFilePath, [
         "-comp",
