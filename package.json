@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/filipedeschamps/video-maker#readme",
   "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.0.17",
+    "@ffprobe-installer/ffprobe": "^1.0.10",
+    "videoshow": "^0.1.11",
+    "fluent-ffmpeg": "^2.1.2",
     "algorithmia": "^0.3.10",
     "express": "^4.16.4",
     "gm": "^1.23.1",
