@@ -164,7 +164,7 @@ Após ser criada, irá aparecer uma janela com as credenciais, você pode dar ok
 
 ![image](https://user-images.githubusercontent.com/34013325/57036076-aa695700-6c29-11e9-8c4d-fc78fecdae46.png)
 
-renomeio o arquivo para **youtube.json** e salve dentro da pasta **video-maker/credentials** 😄
+renomeio o arquivo para **google-youtube.json** e salve dentro da pasta **video-maker/credentials** 😄
 
 ## 1.., 2..., 3... Testando! ##
 Agora dentro da pasta **video-maker** você pode abrir o **cmd** ou **powershell** e executar o comando:
