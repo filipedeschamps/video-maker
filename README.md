@@ -44,7 +44,7 @@ Você precisa criar também as credenciais do *Watson* no site da [IBM](https://
 
 ![IBM](https://i.imgsafe.org/ba/bab0fc4ecd.jpeg)
 
-clicando nele na nova página vai aparece um botão "criar" no final da página, uma vez que o serviço for criado, você será redirecionado para a página de gerenciamento do serviço que você acabou de criar, no menu lateral esquerdo procure por **Credenciais de Serviços** e depois clique em **Auto-generated service credentials** destacado abaixo, então copie as *Credenciais*:
+clicando nele na nova página vai aparecer um botão "criar" no final da página, uma vez que o serviço for criado, você será redirecionado para a página de gerenciamento do serviço que você acabou de criar, no menu lateral esquerdo procure por **Credenciais de Serviços** e depois clique em **Auto-generated service credentials** destacado abaixo, então copie as *Credenciais*:
 
 ![IBM](https://i.imgsafe.org/ba/bace46f16b.jpeg)
 
@@ -133,7 +133,7 @@ Voltando no arquivo **google-search.json** iremos criar uma nova propriedade e i
 
 ```
 {
-  "apiKey": "API_KEY_AQUI"
+  "apiKey": "API_KEY_AQUI",
   "searchEngineId": "ID_MECANISMO_DE_BUSCA"
 }
 ```
