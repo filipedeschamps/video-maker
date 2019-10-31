@@ -2,6 +2,7 @@ const gm = require('gm').subClass({imageMagick: true})
 const state = require('./state.js')
 const spawn = require('child_process').spawn
 const path = require('path')
+const os = require('os');
 const rootPath = path.resolve(__dirname, '..')
 
 
@@ -143,7 +144,16 @@ async function robot() {
 
   async function renderVideoWithAfterEffects() {
     return new Promise((resolve, reject) => {
-      const aerenderFilePath = '/Applications/Adobe After Effects CC 2019/aerender'
+      const systemPlatform=os.platform
+      
+      if (systemPlatform== 'darwin'){
+        const aerenderFilePath = '/Applications/Adobe After Effects CC 2019/aerender'
+      }else if (systemPlatform=='win32'){
+        const aerenderFilePath = '%programfiles%\Adobe\Adobe After Effects CC\Arquivos de suporte\aerender.exe'
+      }else{
+        return reject(new Error('System not Supported'))
+      }
+      
       const templateFilePath = `${rootPath}/templates/1/template.aep`
       const destinationFilePath = `${rootPath}/content/output.mov`
 
