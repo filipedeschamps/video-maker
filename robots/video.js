@@ -5,6 +5,7 @@ const path = require('path')
 const os = require('os');
 const rootPath = path.resolve(__dirname, '..')
 
+const fromRoot = relPath => path.resolve(rootPath, relPath)
 
 async function robot() {
   console.log('> [video-robot] Starting...')
@@ -26,8 +27,8 @@ async function robot() {
 
   async function convertImage(sentenceIndex) {
     return new Promise((resolve, reject) => {
-      const inputFile = `./content/${sentenceIndex}-original.png[0]`
-      const outputFile = `./content/${sentenceIndex}-converted.png`
+      const inputFile = fromRoot(`./content/${sentenceIndex}-original.png[0]`)
+      const outputFile = fromRoot(`./content/${sentenceIndex}-converted.png`)
       const width = 1920
       const height = 1080
 
@@ -71,7 +72,7 @@ async function robot() {
 
   async function createSentenceImage(sentenceIndex, sentenceText) {
     return new Promise((resolve, reject) => {
-      const outputFile = `./content/${sentenceIndex}-sentence.png`
+      const outputFile = fromRoot(`./content/${sentenceIndex}-sentence.png`)
 
       const templateSettings = {
         0: {
@@ -126,8 +127,8 @@ async function robot() {
   async function createYouTubeThumbnail() {
     return new Promise((resolve, reject) => {
       gm()
-        .in('./content/0-converted.png')
-        .write('./content/youtube-thumbnail.jpg', (error) => {
+        .in(fromRoot('./content/0-converted.png'))
+        .write(fromRoot('./content/youtube-thumbnail.jpg'), (error) => {
           if (error) {
             return reject(error)
           }
@@ -154,8 +155,8 @@ async function robot() {
         return reject(new Error('System not Supported'))
       }
       
-      const templateFilePath = `${rootPath}/templates/1/template.aep`
-      const destinationFilePath = `${rootPath}/content/output.mov`
+      const templateFilePath = fromRoot('./templates/1/template.aep')
+      const destinationFilePath = fromRoot('./content/output.mov')
 
       console.log('> [video-robot] Starting After Effects')
 
