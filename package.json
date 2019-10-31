@@ -22,6 +22,7 @@
     "express": "^4.16.4",
     "gm": "^1.23.1",
     "googleapis": "^38.0.0",
+    "handbrake-js": "^3.0.8",
     "image-downloader": "^3.4.2",
     "readline-sync": "^1.4.9",
     "sbd": "^1.0.14",
