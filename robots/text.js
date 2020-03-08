@@ -103,7 +103,7 @@ async function robot() {
           return
         }
 
-        const keywords = response.keywords.map((keyword) => {
+        const keywords = response.result.keywords.map((keyword) => {
           return keyword.text
         })
 
