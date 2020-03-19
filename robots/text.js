@@ -66,11 +66,13 @@ async function robot() {
 
     const sentences = sentenceBoundaryDetection.sentences(content.sourceContentSanitized)
     sentences.forEach((sentence) => {
+     if (sentence.length > 32){
       content.sentences.push({
         text: sentence,
         keywords: [],
         images: []
       })
+     }
     })
   }
 
