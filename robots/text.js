@@ -99,8 +99,7 @@ async function robot() {
         }
       }, (error, response) => {
         if (error) {
-          reject(error)
-          return
+          throw error
         }
 
         const keywords = response.result.keywords.map((keyword) => {
