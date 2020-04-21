@@ -1,3 +1,4 @@
+
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/filipedeschamps/video-maker) 
 
 # video-maker
@@ -174,3 +175,12 @@ Agora dentro da pasta **video-maker** você pode abrir o **cmd** ou **powershell
 node index.js
 ```
 ![ezgif-5-a906cfcd3fd1](https://user-images.githubusercontent.com/34013325/57246263-33f69b80-7013-11e9-97a1-2f84acf2a7fe.gif)
+
+## Contribuidores
+
+| [<img src="https://avatars0.githubusercontent.com/u/24434339?s=400&v=4" width="115"><br><sub>@TheKoakuma</sub>](https://github.com/TheKoakuma) | [<img src="https://avatars0.githubusercontent.com/u/444344?s=400&u=e5ee6a0825bb397c0794968fdaf5617da803a8a0&v=4" width="115"><br><sub>@leodutra</sub>](https://github.com/leodutra) | [<img src="https://avatars1.githubusercontent.com/u/34013325?s=400&u=84c1caa4ce97533386b6de7887026a25f3c61758&v=4" width="115"><br><sub>@hebertlima</sub>](https://github.com/hebertlima) | [<img src="https://avatars0.githubusercontent.com/u/8933834?s=400&u=96591a45887c133c08146af0d43e18c2fe2d6f40&v=4" width="115"><br><sub>@wfrsilva</sub>](https://github.com/wfrsilva) | [<img src="https://avatars3.githubusercontent.com/u/31759891?s=400&u=5ecae8b1b2f60d344baf54f63977222f1993972d&v=4" width="115"><br><sub>@gabrielrufino</sub>](https://github.com/gabrielrufino) | [<img src="https://avatars2.githubusercontent.com/u/36931095?s=400&u=170297bd4fda992bf3163a2e4f3a266c34dbc861&v=4" width="115"><br><sub>@felipemarchi</sub>](https://github.com/felipemarchi) |
+| :---: |  :---: |  :---: |  :---: |  :---: |  :---: |
+| [<img src="https://avatars1.githubusercontent.com/u/48062909?s=400&u=0246d92aa9c198bcd77151544bdcaa390d24dccc&v=4" width="115"><br><sub>@danrleydfl</sub>](https://github.com/danrleydfl) | [<img src="https://avatars0.githubusercontent.com/u/1509692?s=400&u=169dbc4bc14f47a68f61b9d371b777e9d6bf3826&v=4" width="115"><br><sub>@danielschmitz</sub>](https://github.com/danielschmitz) | [<img src="https://avatars1.githubusercontent.com/u/6538069?s=400&u=cc8172d197457a74c7ba41f67fcf97c020f06449&v=4" width="115"><br><sub>@VPagani</sub>](https://github.com/VPagani) |  [<img src="https://avatars3.githubusercontent.com/u/23512680?s=400&u=4c07ce27013ae2f96d8892519332cfba66fa07c3&v=4" width="115"><br><sub>@TauanMatos</sub>](https://github.com/TauanMatos) | [<img src="https://avatars0.githubusercontent.com/u/53243389?s=400&u=75b20737f3cd67321e8628621863d5b87f5ae950&v=4" width="115"><br><sub>@Lorhan7</sub>](https://github.com/Lorhan7) | [<img src="https://avatars2.githubusercontent.com/u/44377258?s=400&u=9ca0a0186f0507d5427ffc1b160015622cb52c44&v=4" width="115"><br><sub>@HeitorAugustoLN</sub>](https://github.com/HeitorAugustoLN)
+
+## Autor
+[<img src="https://avatars3.githubusercontent.com/u/4248081?s=460&v=4" width=115><br><sub>@filipedeschamps</sub>](https://github.com/filipedeschamps)
