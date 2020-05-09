@@ -1,6 +1,6 @@
 const fs = require('fs')
 const contentFilePath = './content.json'
-const scriptFilePath = './content/after-effects-script.js'
+const scriptFilePath = './content/video-script.js'
 
 function save(content) {
   const contentString = JSON.stringify(content)
