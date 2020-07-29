@@ -5,8 +5,9 @@ Projeto open source para fazer vídeos automatizados
 
 # Pré requisitos
 
-- Git (https://git-scm.com/)
-- Node (https://nodejs.org)
+- [Git](https://git-scm.com/)
+- [Node](https://nodejs.org)
+- [Adobe After Effects](https://www.adobe.com/br/products/aftereffects.html)
 
 # Instalação
 
