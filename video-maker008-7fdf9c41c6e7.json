@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "video-maker008",
+  "private_key_id": "7fdf9c41c6e7a4e1b74db00cd0f612ccd73ea480",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDuZ22Gjwnx1lUP\nqbC/8+IdRkftwxoPXvhBqSl3biYTnkjx8DVOL10KryIqps55BMojJKOnuzx5JJZv\nwDiRpDkNt5wZEfUJq6jKH0Tc1PBv6o1iKel/e3rvi3DYlzaEWGmsH+4aZ+WYz3dR\nJGC6oPTnJi5TOhcL7N2b1400EE7mr+Uc+UJ3/AYL9jER1kHN2EaakYKGORzqy3WU\nr3rxW+444BRQh8kmOEJ8Lh4xkThsRT1jRZGIqRkL2HMbjA78QiPWWyLirMP4i0mc\nvWc0U2pS8sxeoMrbRESK6t4X4oRif9XZq3xb4J81P7AvX+zsHgL9RYooFIXnxdf6\n98ekxqoJAgMBAAECggEAP6nVALLf5/nhey5IaeoZvtGO0bphEiu9ReODlEYQ2vpQ\n5nLL+VYClaDREey7hGu4Awx8u4TvkDYqCiudr57YMYaPo848zllN2LPi8snWbzyG\nhulEVmvGF4P4HY672zm09mcMcXa/REBaz4tUXWIwJC34/varQt79CunT5kxYlZdt\nJph9ytluKoO9nBo6YIebCm7v+NNQaFyVFePcacTOS3XU5BLYbW/ilB/4JDPofrUj\nobvmthRA9Q02iZd6V5kF9C2tP0tkZ8AdaiIuKgBTn4SZPa0whEUkKajJLWsKrU9b\n9p+kKLQ++zPgANqljIuExJNbuGb93P9sVxv1ub3XxQKBgQD/TGI2n+uZ8BuQXF5A\n+nIKhMs7Kj8yNTKyeb1Exe+CTUERLBL6YVtzK/E0iMvtbSyYNr31kezdXji7Zkha\n/m37cAkYjSipkh9oOg7b+U/9ApsUBwgFAp0YiiqswIb9q4XpaTjp3QjqHnuUkeYS\nrTRK9vrDtY9gTpalIV2oNIoSrwKBgQDvDyh4M4czBH6wzToA/X+MBmps3kaiyh6d\nLuntiKDU8ZKhz5NMl7d+hjiMvco91k4LzdJscEcUPMS3mAm7/eWDSyIGojbqvadT\nOsEHatbCZ9ifi0ytMRyn0KQQ5NkxFC8ErXrxRzUYbxclgehnLmH0Shq7vkvF46Zl\nJaHzeMkcxwKBgCjHJpjbCmLYO07fsh5m4nhTpbKZmOaIIMTpNRYbF5qUhGQdyho8\nGsNWrXxarVgLLChT9huXZ2IkfqNQPxZptV+IEaveQDR1ppabT2xLcj9Tfzm/tcQ3\nGqikyRQ23FkAYK9boz+XkqjynYKpmzo4eDXRJVTFV1VmuCFAJxmK6tL5AoGAGoIA\nx8tW64ZNEge/rcpuMTWo6WeAR57H5EAGemtTAinDS6P7vlt4YlQ5wwlseozf3Jk3\nAwU0LH9MhNscATd3EqbrH/cuxbq/6g+yxcLIC4h+UbqdhvrSJZ2SA7mMh8+oIwml\nf0mZDpuK4oLUJVTUUcVBz52bQ1cp5T9WBOxYyJMCgYEAkgt850IHbFYoSI+5YfpZ\nO4EVWM/10GoWzuA5d/CaKJ8ZBYQoYp58SrULe8Y39DJV6hztvQ3w0t4lOu1Bs3x1\nbKN3YhZVgnxc1AmQhhfEkjX6kRjsn5IsOnZ+ZnxHXSzifAvMyvlpiKR9dn368fcF\n/u1uywcw7dAVzWtUTYwH3LA=\n-----END PRIVATE KEY-----\n",
+  "client_email": "video-maker@video-maker008.iam.gserviceaccount.com",
+  "client_id": "106804389641979163895",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/video-maker%40video-maker008.iam.gserviceaccount.com"
+}

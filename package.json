@@ -18,13 +18,19 @@
   },
   "homepage": "https://github.com/filipedeschamps/video-maker#readme",
   "dependencies": {
-    "algorithmia": "^0.3.10",
+    "@google-cloud/language": "^4.3.2",
+    "@google-cloud/storage": "^5.19.4",
+    "dotenv": "^16.0.0",
     "express": "^4.16.4",
     "gm": "^1.23.1",
     "googleapis": "^38.0.0",
+    "handbrake-js": "^6.0.0",
     "image-downloader": "^3.4.2",
     "readline-sync": "^1.4.9",
+    "rss-parser": "^3.6.3",
     "sbd": "^1.0.14",
+    "superagent": "^4.1.0",
+    "unidecode": "^0.1.8",
     "watson-developer-cloud": "^3.18.2"
   }
 }

@@ -1,0 +1,16 @@
+Log de renderização do Adobe After Effects v22.3 Windows 64 para o projeto“template.aep”
+
+Renderização iniciada em 10/05/2022 às 19:01:20
+
+  10/05/2022 19:01:20: iniciando composição “main”.
+
+  Configurações de renderização: Best Settings  Qualidade: Melhor  Resolução: Total  Tamanho: 1920 x 1080  Uso do proxy: Não usar substitutos  Efeitos: Configurações atuais  Cache de disco: Somente leitura  Profundidade de cor: Configurações atuais  Mesclagem de quadros: Ativado para camadas selecionadas  Renderização de campo: Desativado  Pulldown: Desativado  Desfoque de movimento: Ativado para camadas selecionadas  Isolamentos: Configurações atuais  Período de tempo: Espaço de trabalho  Início: 0:00:00:00  Fim: 0:01:14:29  Duração: 0:01:15:00  Taxa de quadros: 30,00 (composição)  Camadas de guia: Tudo desativado  Ignorar arquivos existentes: Desativado    Módulo de saída: Lossless  Saída para: D:\video-maker\content\output.mov  Formato: QuickTime  Informações de saída: Apple ProRes 422 LT  Incluir: Link do projeto  Áudio de saída: 48.000 kHz / 16 bit / Estéreo (se a composição tiver áudio)  Canais: RGB  Profundidade: Milhões de cores  Cor: Pré-multiplicado  Redimensionar: -  Cortar: -  Tamanho final: 1920 x 1080  Perfil: -  Ação de pós-renderização: Nenhum  Erro do After Effects: Não é possível renderizar: arquivo /Users/filipedeschamps/video-maker/content/6-converted.png não localizadoErro do After Effects: Não é possível renderizar: arquivo /Users/filipedeschamps/video-maker/content/6-converted.png não localizadoErro do After Effects: Não é possível renderizar: arquivo /Users/filipedeschamps/video-maker/content/6-converted.png não localizadoErro do After Effects: Não é possível renderizar: arquivo /Users/filipedeschamps/video-maker/content/6-converted.png não localizado  não excluiu o arquivo em branco “output.mov” porque ele era maior do que o esperado. (26  ::  170)  Ocorreu um erro inesperado ao exportar uma composição.
+
+Código de erro: \1
+
+Reinicie o After Effects e tente exportar novamente.  10/05/2022 19:01:20: composição concluída “main”.
+
+
+  Tempo total decorrido: 
+Log fechado em 10/05/2022 às 19:01:20
+
