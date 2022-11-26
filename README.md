@@ -3,12 +3,12 @@
 # video-maker
 Projeto open source para fazer vídeos automatizados
 
-# Pré requisitos
+# Pré requisitos/Pre requirements
 
 - Git (https://git-scm.com/)
 - Node (https://nodejs.org)
 
-# Instalação
+# Instalação/Installation
 
 Por [Hebert Lima](https://github.com/hebertlima)
 
