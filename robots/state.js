@@ -7,7 +7,7 @@ function save(content) {
   return fs.writeFileSync(contentFilePath, contentString)
 }
 
-function saveScript(content) {
+function saveScript(content) { 
   const contentString = JSON.stringify(content)
   const scriptString = `var content = ${contentString}`
   return fs.writeFileSync(scriptFilePath, scriptString)
