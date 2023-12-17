@@ -14,7 +14,7 @@
         "url": "git+https://github.com/filipedeschamps/video-maker.git"
     },
     "author": "",
-    "license": "ISC",
+    "license": "MIT",
     "bugs": {
         "url": "https://github.com/filipedeschamps/video-maker/issues"
     },
