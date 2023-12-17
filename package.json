@@ -30,6 +30,6 @@
         "watson-developer-cloud": "^3.18.2"
     },
     "devDependencies": {
-        "pkg": "^4.3.7"
+        "pkg": "^4.5.1"
     }
 }
